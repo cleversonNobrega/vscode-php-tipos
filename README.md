@@ -19,7 +19,7 @@ O tema **"Material + PHP Tipos (anel)"** usa o Material Icon Theme e acrescenta 
 
 Arquivos sem declaração (rotas, configurações) ficam com o ícone padrão do PHP. O tema é refeito sozinho quando você cria, apaga ou salva arquivos `.php`.
 
-![Ícones por tipo no explorador](docs/icones.svg)
+![Ícones por tipo no explorador](docs/icones.png)
 
 ### Criar arquivos pelo botão direito
 
@@ -37,11 +37,21 @@ Cada item só aparece na pasta que combina (Controller em `Controllers`, Model e
 
 ### Recurso completo
 
-O item **Novo Laravel → Recurso completo** faz três perguntas (nome do Model, campos e tipo do controller) e cria todos os arquivos de uma vez:
+O item **Novo Laravel → Recurso completo** faz três perguntas (nome do Model, campos e tipo do controller) e cria todos os arquivos de uma vez (Model, Migration, Request, Controller e, no modo Web, as views `index`, `_form`, `create`, `edit` e `show`).
 
-![Fluxo do Recurso completo](docs/recurso-completo.svg)
+**1. Os campos** (o nome do Model vem na pergunta anterior):
 
-As imagens deste README são ilustrações do funcionamento, não capturas de tela.
+![Pergunta dos campos](docs/campos.png)
+
+**2. O tipo do controller:**
+
+![Pergunta do tipo do controller](docs/tipo.png)
+
+**3. O controller gerado** (namespace, `use` e regras vêm do `composer.json` do projeto; a linha `Route::resource(...)` é copiada para a área de transferência):
+
+![Controller gerado pelo Recurso completo](docs/resultado.png)
+
+> As capturas dos ícones e do Recurso completo são reais (VS Code com a extensão instalada, num projeto de exemplo). A imagem do menu do botão direito é uma ilustração.
 
 ### Campos
 
@@ -61,7 +71,7 @@ Veja a pasta de instaladores ou gere o seu:
 
 ```bash
 python scripts/empacotar.py
-code --install-extension dist/php-tipos-icones-0.2.0.vsix --force
+code --install-extension dist/php-tipos-icones-0.2.1.vsix --force
 ```
 
 Depois escolha o tema em **Ctrl+Shift+P → Preferências: Tema de Ícones de Arquivo → Material + PHP Tipos (anel)** e recarregue a janela. O Material Icon Theme é instalado junto, como dependência.

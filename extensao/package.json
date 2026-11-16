@@ -2,7 +2,7 @@
   "name": "php-tipos-icones",
   "displayName": "PHP Tipos (Material + anel C/I/T/E)",
   "description": "Material Icon Theme com ícone em anel para classe, interface, trait e enum do PHP.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "publisher": "local",
   "engines": {
     "vscode": "^1.80.0"

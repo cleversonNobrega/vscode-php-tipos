@@ -31,13 +31,17 @@ function varre(dir, saida) {
 
 function gerar(raizes) {
   const cacheArq = path.join(AQUI, 'cache.json');
-  let cache = {}; try { cache = JSON.parse(fs.readFileSync(cacheArq, 'utf8')); } catch {}
-  for (const k of Object.keys(cache)) if (!fs.existsSync(k)) delete cache[k];
-  for (const r of raizes) {
-    for (const k of Object.keys(cache)) if (k.startsWith(r + path.sep)) delete cache[k];
-    varre(r, cache);
+  let cache = {};
+  if (raizes.length) {
+    // só as pastas abertas agora: acumular todos os projetos já abertos deixa o tema enorme
+    // (milhares de nomes) e o navegador do VS Code deixa de aplicar os últimos da lista
+    for (const r of raizes) varre(r, cache);
+    fs.writeFileSync(cacheArq, JSON.stringify(cache, null, 1));
+  } else {
+    // sem pasta aberta: mantém o que já havia, sem arquivos apagados
+    try { cache = JSON.parse(fs.readFileSync(cacheArq, 'utf8')); } catch {}
+    for (const k of Object.keys(cache)) if (!fs.existsSync(k)) delete cache[k];
   }
-  fs.writeFileSync(cacheArq, JSON.stringify(cache, null, 1));
 
   const mat = achaMaterial();
   const base = JSON.parse(fs.readFileSync(path.join(mat, 'dist', 'material-icons.json'), 'utf8'));
