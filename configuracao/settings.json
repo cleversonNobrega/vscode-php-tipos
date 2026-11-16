@@ -1,0 +1,219 @@
+{
+  // ===== Aparência =====
+  "workbench.colorTheme": "Dracula Theme",
+  "workbench.iconTheme": "php-tipos-icones",
+  "workbench.colorCustomizations": {
+    "editorBracketHighlight.foreground1": "#FF79C6",
+    "editorBracketHighlight.foreground2": "#50FA7B",
+    "editorBracketHighlight.foreground3": "#8BE9FD",
+    "editorBracketHighlight.foreground4": "#BD93F9",
+    "editorBracketHighlight.foreground5": "#FFB86C",
+    "editorBracketHighlight.foreground6": "#F1FA8C"
+  },
+  "explorer.compactFolders": false,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+  "claudeCode.preferredLocation": "panel",
+
+  // ===== Editor =====
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnType": false,
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": true,
+  "editor.wordWrap": "on",
+  "editor.minimap.enabled": true,
+  "editor.renderWhitespace": "boundary",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.guides.indentation": true,
+  "editor.linkedEditing": true,
+  "editor.stickyScroll.enabled": true,
+  "breadcrumbs.enabled": true,
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1500,
+
+  // ===== IntelliSense =====
+  "editor.quickSuggestions": {
+    "other": "on",
+    "comments": "off",
+    "strings": "on"
+  },
+  "editor.suggestOnTriggerCharacters": true,
+  "editor.parameterHints.enabled": true,
+  "editor.inlineSuggest.enabled": true,
+  "editor.wordBasedSuggestions": "off",
+  "editor.snippetSuggestions": "inline",
+  "editor.acceptSuggestionOnEnter": "on",
+  "editor.tabCompletion": "on",
+  "editor.hover.enabled": "on",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "typescriptreact": "javascriptreact",
+    "blade": "html"
+  },
+
+  // ===== Ações ao salvar =====
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+
+  // ===== Arquivos / padronização =====
+  "files.eol": "\n",
+  "files.encoding": "utf8",
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "files.associations": {
+    "*.blade.php": "blade",
+    "docker-compose*.yml": "dockercompose",
+    "compose*.yml": "dockercompose"
+  },
+
+  // ===== Desempenho =====
+  "files.exclude": {
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true
+  },
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/vendor/**": true,
+    "**/.git/objects/**": true,
+    "**/storage/framework/**": true,
+    "**/storage/logs/**": true,
+    "**/dist/**": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/vendor": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/storage/framework": true,
+    "**/storage/logs": true,
+    "**/*.min.js": true,
+    "**/package-lock.json": true,
+    "**/composer.lock": true
+  },
+
+  // ===== Formatadores por linguagem =====
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[php]": {
+    "editor.defaultFormatter": "open-southeners.laravel-pint",
+    "editor.tabSize": 4
+  },
+  "[blade]": {
+    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client",
+    "editor.tabSize": 4
+  },
+  "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[javascriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[typescriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[jsonc]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[html]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[css]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+    "editor.tabSize": 2
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "files.trimTrailingWhitespace": false
+  },
+  "[sql]": { "editor.tabSize": 2 },
+
+  // ===== PHP / Laravel =====
+  "php.suggest.basic": false,
+  "intelephense.format.enable": true,
+
+  // ===== Tailwind / CSS =====
+  "tailwindCSS.emmetCompletions": true,
+  "tailwindCSS.includeLanguages": {
+    "blade": "html",
+    "javascript": "javascript",
+    "typescript": "typescript"
+  },
+  "tailwindCSS.experimental.classRegex": [
+    ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
+    ["cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ],
+  "css.validate": true,
+  "scss.validate": true,
+  "css.lint.unknownAtRules": "ignore",
+
+  // ===== Debug global (Xdebug) — vale para todos os projetos =====
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "PHP: Listen for Xdebug",
+        "type": "php",
+        "request": "launch",
+        "port": 9003
+      },
+      {
+        "name": "PHP: Executar arquivo atual",
+        "type": "php",
+        "request": "launch",
+        "program": "${file}",
+        "cwd": "${fileDirname}",
+        "port": 0,
+        "runtimeArgs": ["-dxdebug.start_with_request=yes"],
+        "env": { "XDEBUG_MODE": "debug,develop", "XDEBUG_CONFIG": "client_port=${port}" }
+      },
+      {
+        "name": "PHP: Listen (Docker)",
+        "type": "php",
+        "request": "launch",
+        "port": 9003,
+        "pathMappings": { "/var/www/html": "${workspaceFolder}" }
+      }
+    ]
+  },
+
+  // ===== Terminal (específico do Windows) =====
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+
+  // ===== Git =====
+  "git.enableSmartCommit": true,
+  "git.autofetch": true,
+  "git.confirmSync": false,
+
+    // ---------- Ícones PHP: elefante rosa ----------
+    "material-icon-theme.files.customClones": [
+        {
+            "name": "php-elefante-rosa",
+            "base": "php_elephant",
+            "color": "#ff94bb",
+            "fileExtensions": ["php"],
+        },
+    ],
+
+    // ---------- Error Lens: mensagens de erro em português ----------
+    "errorLens.replace": [
+        { "matcher": "^Undefined method '(.+)'\\.?$", "message": "Método '$1' não existe (ou o editor não encontrou a definição)." },
+        { "matcher": "^Undefined type '(.+)'\\.?$", "message": "Classe/tipo '$1' não encontrado (falta o use/import ou o arquivo)." },
+        { "matcher": "^Undefined variable '(.+)'\\.?$", "message": "Variável '$1' não foi definida." },
+        { "matcher": "^Undefined property '(.+)'\\.?$", "message": "Propriedade '$1' não existe." },
+        { "matcher": "^Undefined function '(.+)'\\.?$", "message": "Função '$1' não existe." },
+        { "matcher": "^Undefined constant '(.+)'\\.?$", "message": "Constante '$1' não existe." },
+        { "matcher": "^Undefined class constant '(.+)'\\.?$", "message": "Constante de classe '$1' não existe." },
+        { "matcher": "^Possibly undefined variable '(.+)'\\.?$", "message": "Variável '$1' pode não estar definida." },
+        { "matcher": "^Expected type '(.+)'\\. Found '(.+)'\\.?$", "message": "Tipo esperado '$1', mas recebeu '$2'." },
+        { "matcher": "^Expected (\\d+) arguments?\\. Found (\\d+)\\.?$", "message": "Esperava $1 argumento(s), mas recebeu $2." },
+        { "matcher": "^Unexpected '(.+)'\\.?$", "message": "Símbolo inesperado '$1'." },
+        { "matcher": "^Expected '(.+)'\\.?$", "message": "Esperava '$1'." },
+        { "matcher": "^Syntax error: (.+)$", "message": "Erro de sintaxe: $1" },
+    ],
+
+    // ---------- Blade e ortografia ----------
+    "[blade]": {
+        "editor.defaultFormatter": "shufo.vscode-blade-formatter",
+    },
+    "cSpell.language": "en,pt-BR",
+}

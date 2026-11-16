@@ -1,0 +1,5 @@
+tema.json
+cache.json
+dist/
+node_modules/
+*.vsix

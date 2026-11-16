@@ -1,0 +1,319 @@
+{
+  "name": "php-tipos-icones",
+  "displayName": "PHP Tipos (Material + anel C/I/T/E)",
+  "description": "Material Icon Theme com ícone em anel para classe, interface, trait e enum do PHP.",
+  "version": "0.0.1",
+  "publisher": "local",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "iconThemes": [
+      {
+        "id": "php-tipos-icones",
+        "label": "Material + PHP Tipos (anel)",
+        "path": "./tema.json",
+        "_watch": true
+      }
+    ],
+    "commands": [
+      {
+        "command": "phpTipos.novo.arquivo",
+        "title": "PHP: Arquivo PHP"
+      },
+      {
+        "command": "phpTipos.novo.controller",
+        "title": "PHP: Controller"
+      },
+      {
+        "command": "phpTipos.novo.class",
+        "title": "PHP: Classe"
+      },
+      {
+        "command": "phpTipos.novo.interface",
+        "title": "PHP: Interface"
+      },
+      {
+        "command": "phpTipos.novo.trait",
+        "title": "PHP: Trait"
+      },
+      {
+        "command": "phpTipos.novo.enum",
+        "title": "PHP: Enum"
+      },
+      {
+        "command": "phpTipos.novo.controllerResource",
+        "title": "Controller resource (CRUD)"
+      },
+      {
+        "command": "phpTipos.novo.model",
+        "title": "Model"
+      },
+      {
+        "command": "phpTipos.novo.migration",
+        "title": "Migration"
+      },
+      {
+        "command": "phpTipos.novo.request",
+        "title": "Request (FormRequest)"
+      },
+      {
+        "command": "phpTipos.novo.service",
+        "title": "Service"
+      },
+      {
+        "command": "phpTipos.novo.blade",
+        "title": "View em branco"
+      },
+      {
+        "command": "phpTipos.novo.bladeLayout",
+        "title": "View com @extends('layouts.app')"
+      },
+      {
+        "command": "phpTipos.blade.layoutBase",
+        "title": "Layout base (layouts/app)"
+      },
+      {
+        "command": "phpTipos.blade.listagem",
+        "title": "Listagem (index) com tabela"
+      },
+      {
+        "command": "phpTipos.blade.formulario",
+        "title": "Formulário (criar e editar)"
+      },
+      {
+        "command": "phpTipos.blade.detalhe",
+        "title": "Detalhe (show)"
+      },
+      {
+        "command": "phpTipos.blade.componente",
+        "title": "Componente (x-nome)"
+      },
+      {
+        "command": "phpTipos.novo.recursoCompleto",
+        "title": "Recurso completo (Model, Migration, Request, Controller, Views)"
+      }
+    ],
+    "submenus": [
+      {
+        "id": "phpTipos.submenu",
+        "label": "Novo PHP"
+      },
+      {
+        "id": "phpTipos.laravel",
+        "label": "Novo Laravel"
+      },
+      {
+        "id": "phpTipos.blade",
+        "label": "Novo Blade"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "submenu": "phpTipos.submenu",
+          "when": "explorerResourceIsFolder",
+          "group": "2_workspace@0"
+        },
+        {
+          "submenu": "phpTipos.laravel",
+          "when": "explorerResourceIsFolder",
+          "group": "2_workspace@1"
+        },
+        {
+          "submenu": "phpTipos.blade",
+          "when": "explorerResourceIsFolder && (config.phpTipos.mostrarTudo || resourcePath =~ /views/)",
+          "group": "2_workspace@2"
+        }
+      ],
+      "phpTipos.submenu": [
+        {
+          "command": "phpTipos.novo.arquivo",
+          "group": "1@0"
+        },
+        {
+          "command": "phpTipos.novo.controller",
+          "group": "1@1",
+          "when": "config.phpTipos.mostrarTudo || resourcePath =~ /Controllers/"
+        },
+        {
+          "command": "phpTipos.novo.class",
+          "group": "1@2"
+        },
+        {
+          "command": "phpTipos.novo.interface",
+          "group": "1@3"
+        },
+        {
+          "command": "phpTipos.novo.trait",
+          "group": "1@4"
+        },
+        {
+          "command": "phpTipos.novo.enum",
+          "group": "1@5"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "phpTipos.novo.arquivo",
+          "when": "false"
+        },
+        {
+          "command": "phpTipos.novo.controller",
+          "when": "false"
+        },
+        {
+          "command": "phpTipos.novo.class",
+          "when": "false"
+        },
+        {
+          "command": "phpTipos.novo.interface",
+          "when": "false"
+        },
+        {
+          "command": "phpTipos.novo.trait",
+          "when": "false"
+        },
+        {
+          "command": "phpTipos.novo.enum",
+          "when": "false"
+        },
+        {
+          "command": "phpTipos.novo.controllerResource",
+          "when": "false"
+        },
+        {
+          "command": "phpTipos.novo.model",
+          "when": "false"
+        },
+        {
+          "command": "phpTipos.novo.migration",
+          "when": "false"
+        },
+        {
+          "command": "phpTipos.novo.request",
+          "when": "false"
+        },
+        {
+          "command": "phpTipos.novo.service",
+          "when": "false"
+        },
+        {
+          "command": "phpTipos.novo.blade",
+          "when": "false"
+        },
+        {
+          "command": "phpTipos.novo.bladeLayout",
+          "when": "false"
+        },
+        {
+          "command": "phpTipos.blade.layoutBase",
+          "when": "false"
+        },
+        {
+          "command": "phpTipos.blade.listagem",
+          "when": "false"
+        },
+        {
+          "command": "phpTipos.blade.formulario",
+          "when": "false"
+        },
+        {
+          "command": "phpTipos.blade.detalhe",
+          "when": "false"
+        },
+        {
+          "command": "phpTipos.blade.componente",
+          "when": "false"
+        }
+      ],
+      "phpTipos.laravel": [
+        {
+          "command": "phpTipos.novo.recursoCompleto",
+          "group": "1@0"
+        },
+        {
+          "command": "phpTipos.novo.controllerResource",
+          "group": "2@0",
+          "when": "config.phpTipos.mostrarTudo || resourcePath =~ /Controllers/"
+        },
+        {
+          "command": "phpTipos.novo.model",
+          "group": "2@1",
+          "when": "config.phpTipos.mostrarTudo || resourcePath =~ /Models/"
+        },
+        {
+          "command": "phpTipos.novo.migration",
+          "group": "2@2",
+          "when": "config.phpTipos.mostrarTudo || resourcePath =~ /migrations/"
+        },
+        {
+          "command": "phpTipos.novo.request",
+          "group": "2@3",
+          "when": "config.phpTipos.mostrarTudo || resourcePath =~ /Requests/"
+        },
+        {
+          "command": "phpTipos.novo.service",
+          "group": "2@4",
+          "when": "config.phpTipos.mostrarTudo || resourcePath =~ /Services/"
+        }
+      ],
+      "phpTipos.blade": [
+        {
+          "command": "phpTipos.blade.layoutBase",
+          "group": "1@0",
+          "when": "config.phpTipos.mostrarTudo || resourcePath =~ /views/"
+        },
+        {
+          "command": "phpTipos.blade.listagem",
+          "group": "1@1",
+          "when": "config.phpTipos.mostrarTudo || resourcePath =~ /views/"
+        },
+        {
+          "command": "phpTipos.blade.formulario",
+          "group": "1@2",
+          "when": "config.phpTipos.mostrarTudo || resourcePath =~ /views/"
+        },
+        {
+          "command": "phpTipos.blade.detalhe",
+          "group": "1@3",
+          "when": "config.phpTipos.mostrarTudo || resourcePath =~ /views/"
+        },
+        {
+          "command": "phpTipos.blade.componente",
+          "group": "1@4",
+          "when": "config.phpTipos.mostrarTudo || resourcePath =~ /views/"
+        },
+        {
+          "command": "phpTipos.novo.bladeLayout",
+          "group": "1@5",
+          "when": "config.phpTipos.mostrarTudo || resourcePath =~ /views/"
+        },
+        {
+          "command": "phpTipos.novo.blade",
+          "group": "1@6",
+          "when": "config.phpTipos.mostrarTudo || resourcePath =~ /views/"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "PHP Tipos",
+      "properties": {
+        "phpTipos.mostrarTudo": {
+          "type": "boolean",
+          "default": false,
+          "description": "Mostra todos os itens de Novo PHP/Laravel/Blade em qualquer pasta (por padrão cada item só aparece na pasta que combina: Controllers, Models, migrations, Requests, Services, views)."
+        },
+        "phpTipos.atualizarIconesSozinho": {
+          "type": "boolean",
+          "default": true,
+          "description": "Depois de criar/apagar arquivos PHP, troca o tema de ícones por um instante para o VS Code reler os ícones C/I/T/E sem recarregar a janela."
+        }
+      }
+    }
+  }
+}
