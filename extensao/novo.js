@@ -28,17 +28,23 @@ function namespaceDe(dir) {
   const pre = melhor[0].split(BS).filter(Boolean).join(BS);
   return [pre, ...partes].filter(Boolean).join(BS);
 }
-function corpo(tipo, nome, ns) {
-  const cab = '<?php\n\n' + (ns ? `namespace ${ns};\n\n` : '');
+function prefixoPrincipal(dir) {
+  const BS = String.fromCharCode(92);
+  const m = psr4(dir).find(([pre]) => !/test/i.test(pre)) || psr4(dir)[0];
+  return m ? m[0].split(BS).filter(Boolean).join(BS) : 'App';
+}
+function corpo(tipo, nome, ns, dir) {
+  const G = require('./gera');
+  const cab = G.abertura() + (ns ? `namespace ${ns};\n\n` : '');
   switch (tipo) {
     case 'controller': {
       const BS = String.fromCharCode(92);
-      const ctl = ['App', 'Http', 'Controllers'].join(BS);
+      const ctl = [prefixoPrincipal(dir), 'Http', 'Controllers'].join(BS);
       const req = 'use Illuminate' + BS + 'Http' + BS + 'Request;\n\n';
       const uso = ns && ns !== ctl ? 'use ' + ctl + BS + 'Controller;\n' + req : (ns ? req : '');
       return `${cab}${uso}class ${nome} extends Controller\n{\n    //\n}\n`;
     }
-    case 'arquivo': return `<?php\n\n`;
+    case 'arquivo': return G.abertura();
     case 'class': return `${cab}class ${nome}\n{\n    //\n}\n`;
     case 'interface': return `${cab}interface ${nome}\n{\n    //\n}\n`;
     case 'trait': return `${cab}trait ${nome}\n{\n    //\n}\n`;
@@ -64,7 +70,7 @@ async function criarBlade(uri, modelo) {
   const arq = path.join(dir, nome + '.blade.php');
   if (fs.existsSync(arq)) { vscode.window.showErrorMessage(`${nome}.blade.php já existe aqui.`); return; }
   const texto = modelo === 'layout'
-    ? `@extends('layouts.app')\n\n@section('content')\n    \n@endsection\n`
+    ? `@extends('${require('./gera').cfg.layout || 'layouts.app'}')\n\n@section('content')\n    \n@endsection\n`
     : '';
   fs.writeFileSync(arq, texto, 'utf8');
   await vscode.window.showTextDocument(await vscode.workspace.openTextDocument(arq));
@@ -87,7 +93,7 @@ async function criar(tipo, uri) {
   if (tipo === 'controller') nome = nome.replace(/controller$/i, '') + 'Controller';
   const arq = path.join(dir, nome + '.php');
   if (fs.existsSync(arq)) { vscode.window.showErrorMessage(`${nome}.php já existe aqui.`); return; }
-  fs.writeFileSync(arq, corpo(tipo, nome, namespaceDe(dir)), 'utf8');
+  fs.writeFileSync(arq, corpo(tipo, nome, namespaceDe(dir), dir), 'utf8');
   await vscode.window.showTextDocument(await vscode.workspace.openTextDocument(arq));
 }
 exports.util = { pastaAlvo, namespaceDe, psr4 };

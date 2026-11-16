@@ -48,7 +48,7 @@ function layoutDoProjeto(dir) {
       if (nome) return 'layouts.' + nome;
     } catch {}
   }
-  return 'layouts.app';
+  return G.cfg.layout || 'layouts.app';
 }
 
 // ---------- entradas ----------
@@ -100,7 +100,7 @@ async function novoService(uri) {
   let n = await pedeNome('Nome do Service', 'Ex.: LeadScoringService', NOME_CLASSE, MSG_CLASSE); if (!n) return;
   n = limpa(n).replace(/service$/i, '') + 'Service';
   const ns = nsDe(dir);
-  await grava(path.join(dir, n + '.php'), `${'<?php\n\ndeclare(strict_types=1);\n\n'}${ns ? `namespace ${ns};\n\n` : ''}class ${n}\n{\n    //\n}\n`);
+  await grava(path.join(dir, n + '.php'), `${G.abertura()}${ns ? `namespace ${ns};\n\n` : ''}class ${n}\n{\n    //\n}\n`);
 }
 function dataHora() {
   const d = new Date(), p = x => String(x).padStart(2, '0');

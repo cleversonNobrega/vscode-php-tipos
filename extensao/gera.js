@@ -1,17 +1,44 @@
 // Geradores de texto (sem depender do VS Code): Model, Migration, Request, Controller e Views.
 const BS = '\\';
-const STRICT = '<?php\n\ndeclare(strict_types=1);\n\n';
+
+// ---------- configuração (vem das configurações do VS Code) ----------
+const cfg = { strict: true, plural: 'pt-BR', custom: {}, layout: 'layouts.app' };
+let STRICT = '<?php\n\ndeclare(strict_types=1);\n\n';
+function configurar(o = {}) {
+  Object.assign(cfg, o);
+  cfg.custom = Object.fromEntries(Object.entries(cfg.custom || {}).map(([k, v]) => [k.toLowerCase(), String(v)]));
+  STRICT = '<?php\n\n' + (cfg.strict ? 'declare(strict_types=1);\n\n' : '');
+}
+const abertura = () => STRICT;
 
 // ---------- nomes ----------
 const studly = s => s.split(/[_\-\s]+/).filter(Boolean).map(p => p.charAt(0).toUpperCase() + p.slice(1)).join('');
 const snake = s => s.replace(/([a-z0-9])([A-Z])/g, '$1_$2').replace(/[\-\s]+/g, '_').toLowerCase();
 const kebab = s => snake(s).replace(/_/g, '-');
-const plural = s => (/(s|x|z|ch|sh)$/.test(s) ? s + 'es' : /[^aeiou]y$/.test(s) ? s.slice(0, -1) + 'ies' : s + 's');
+const pluralEn = s => (/(s|x|z|ch|sh)$/.test(s) ? s + 'es' : /[^aeiou]y$/.test(s) ? s.slice(0, -1) + 'ies' : s + 's');
+// Regras básicas do português (sem acentos): contato→contatos, item→itens, animal→animais, ação→ações, lead→leads
+function pluralPt(s) {
+  const l = s.toLowerCase();
+  if (/ão$/.test(l)) return s.slice(0, -2) + 'ões';
+  if (/[aeiou]$/.test(l)) return s + 's';
+  if (/m$/.test(l)) return s.slice(0, -1) + 'ns';
+  if (/[rz]$/.test(l)) return s + 'es';
+  if (/(al|el|ol|ul)$/.test(l)) return s.slice(0, -1) + 'is';
+  if (/il$/.test(l)) return s.slice(0, -2) + 'is';
+  if (/s$/.test(l)) return s;
+  return s + 's';
+}
+const plural = s => {
+  const c = cfg.custom[s.toLowerCase()];
+  if (c) return c;
+  return cfg.plural === 'en' ? pluralEn(s) : pluralPt(s);
+};
 const lcFirst = s => s.charAt(0).toLowerCase() + s.slice(1);
 const humaniza = n => { const t = n.replace(/_id$/, '').replace(/_/g, ' '); return t.charAt(0).toUpperCase() + t.slice(1); };
 const nomes = model => {
   const v = lcFirst(model);
-  return { model, v, vp: plural(v), tabela: snake(plural(model)), rota: kebab(plural(model)), titulo: plural(model) };
+  const p = plural(model);
+  return { model, v, vp: lcFirst(plural(v)), tabela: snake(p), rota: kebab(p), titulo: p.charAt(0).toUpperCase() + p.slice(1) };
 };
 
 // ---------- campos: "nome:string, email:string:unique, valor:decimal:nullable, company_id:foreignId" ----------
@@ -416,4 +443,5 @@ module.exports = {
   BS, studly, snake, kebab, plural, lcFirst, nomes, parseCampos,
   model, migrationCria, migrationAltera, migrationVazia, request, controllerResource,
   layoutBase, index, formUnico, formParcial, paginaForm, show, componente,
+  configurar, abertura, cfg,
 };

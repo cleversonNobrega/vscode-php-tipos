@@ -31,7 +31,20 @@ function rodar() {
   }
 }
 
+// Lê as configurações phpTipos.* e entrega aos geradores (plural, strict_types, layout).
+function aplicaConfig() {
+  const c = vscode.workspace.getConfiguration('phpTipos');
+  require('./gera').configurar({
+    plural: c.get('plural', 'pt-BR'),
+    custom: c.get('pluraisPersonalizados', {}),
+    strict: c.get('strictTypes', true),
+    layout: c.get('layoutPadrao', 'layouts.app'),
+  });
+}
+
 exports.activate = ctx => {
+  aplicaConfig();
+  ctx.subscriptions.push(vscode.workspace.onDidChangeConfiguration(e => { if (e.affectsConfiguration('phpTipos')) aplicaConfig(); }));
   require('./novo').registrar(ctx);
   require('./laravel').registrar(ctx);
   require('./blade').registrar(ctx);

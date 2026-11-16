@@ -2,7 +2,7 @@
   "name": "php-tipos-icones",
   "displayName": "PHP Tipos (Material + anel C/I/T/E)",
   "description": "Material Icon Theme com ícone em anel para classe, interface, trait e enum do PHP.",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "publisher": "local",
   "engines": {
     "vscode": "^1.80.0"
@@ -312,6 +312,33 @@
           "type": "boolean",
           "default": true,
           "description": "Depois de criar/apagar arquivos PHP, troca o tema de ícones por um instante para o VS Code reler os ícones C/I/T/E sem recarregar a janela."
+        },
+        "phpTipos.plural": {
+          "type": "string",
+          "enum": [
+            "pt-BR",
+            "en"
+          ],
+          "default": "pt-BR",
+          "description": "Regra de plural usada para tabela, rota e variáveis (contato → contatos, item → itens, ação → ações). Use 'en' para o plural do inglês (lead → leads, category → categories)."
+        },
+        "phpTipos.pluraisPersonalizados": {
+          "type": "object",
+          "default": {},
+          "description": "Exceções de plural, por Model. Ex.: { \"Pessoa\": \"pessoas\", \"Mao\": \"maos\" }",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "phpTipos.strictTypes": {
+          "type": "boolean",
+          "default": true,
+          "description": "Gera declare(strict_types=1); nos arquivos PHP novos."
+        },
+        "phpTipos.layoutPadrao": {
+          "type": "string",
+          "default": "layouts.app",
+          "description": "Nome da view de layout usada nas telas Blade quando o projeto não tem uma pasta resources/views/layouts."
         }
       }
     }
