@@ -4,7 +4,7 @@
 
 Clique com o botão direito em uma pasta, escolha o que quer criar e informe o nome. A extensão cria o arquivo no lugar certo, com namespace, `use` e código base. No Laravel, informe os campos (`name:string, email:string:unique`) e ela monta Model, Migration, Request, Controller e telas de uma vez.
 
-![Ícones por tipo no explorador](docs/icones.png)
+![Ícones por tipo no explorador](https://raw.githubusercontent.com/cleversonNobrega/vscode-php-tipos/main/extensao/docs/icones.png)
 
 ## Problemas que resolve
 
@@ -32,7 +32,7 @@ Arquivos sem declaração (rotas, configurações) ficam com o ícone padrão do
 
 Três submenus, cada um com seus itens:
 
-![Menu do botão direito](docs/menu.svg)
+![Menu do botão direito](https://raw.githubusercontent.com/cleversonNobrega/vscode-php-tipos/main/extensao/docs/menu.svg)
 
 **Novo PHP**
 - Arquivo PHP, Classe, Interface, Trait e Enum.
@@ -75,15 +75,15 @@ name:string, email:string:unique, valor:decimal:nullable, ativo:boolean, company
 2. Digite o nome do Model no singular (`Lead`).
 3. Digite os campos, ou deixe em branco.
 
-![Pergunta dos campos](docs/campos.png)
+![Pergunta dos campos](https://raw.githubusercontent.com/cleversonNobrega/vscode-php-tipos/main/extensao/docs/campos.png)
 
 4. Escolha **Web (Blade)** ou **API (JSON)**.
 
-![Pergunta do tipo do controller](docs/tipo.png)
+![Pergunta do tipo do controller](https://raw.githubusercontent.com/cleversonNobrega/vscode-php-tipos/main/extensao/docs/tipo.png)
 
 5. A extensão cria os arquivos nas pastas do projeto e abre o controller. Cole a linha de rota (já copiada) em `routes/web.php` ou `routes/api.php`.
 
-![Controller gerado pelo Recurso completo](docs/resultado.png)
+![Controller gerado pelo Recurso completo](https://raw.githubusercontent.com/cleversonNobrega/vscode-php-tipos/main/extensao/docs/resultado.png)
 
 A extensão **nunca sobrescreve**: se algum dos arquivos já existir, ela avisa e não cria nenhum.
 
@@ -139,4 +139,4 @@ Abra uma [issue no GitHub](https://github.com/cleversonNobrega/vscode-php-tipos/
 
 ## Licença
 
-[MIT](LICENSE)
+[MIT](https://github.com/cleversonNobrega/vscode-php-tipos/blob/main/extensao/LICENSE)
