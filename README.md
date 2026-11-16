@@ -4,6 +4,18 @@ Extensão do VS Code para quem trabalha com PHP e Laravel: **ícones em anel** p
 
 ![Ícones por tipo no explorador](extensao/docs/icones.png)
 
+## Instalar
+
+No VS Code, abra a aba **Extensões**, busque por **PHP Tipos** e clique em **Instalar**. Ou rode:
+
+```bash
+code --install-extension cleversonnobrega.php-tipos
+```
+
+Também está na [página do Marketplace](https://marketplace.visualstudio.com/items?itemName=cleversonnobrega.php-tipos).
+
+## Sobre a extensão
+
 A descrição completa, com funcionalidades, passo a passo, configurações e imagens, está em **[extensao/README.md](extensao/README.md)** (é o mesmo texto da página no Marketplace).
 
 ## O que há neste repositório
