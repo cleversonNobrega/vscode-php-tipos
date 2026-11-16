@@ -19,6 +19,8 @@ O tema **"Material + PHP Tipos (anel)"** usa o Material Icon Theme e acrescenta 
 
 Arquivos sem declaração (rotas, configurações) ficam com o ícone padrão do PHP. O tema é refeito sozinho quando você cria, apaga ou salva arquivos `.php`.
 
+![Ícones por tipo no explorador](docs/icones.svg)
+
 ### Criar arquivos pelo botão direito
 
 Clique com o botão direito em uma **pasta** do explorador:
@@ -29,7 +31,17 @@ Clique com o botão direito em uma **pasta** do explorador:
   - Controller resource (CRUD), Model, Migration, Request e Service avulsos.
 - **Novo Blade:** layout base, listagem, formulário (criar e editar), detalhe, componente e view em branco ou com `@extends`.
 
+![Menu do botão direito](docs/menu.svg)
+
 Cada item só aparece na pasta que combina (Controller em `Controllers`, Model em `Models`, Migration em `migrations`, Request em `Requests`, Service em `Services`, Blade em `views`). Para ver tudo em qualquer pasta, ligue `phpTipos.mostrarTudo`.
+
+### Recurso completo
+
+O item **Novo Laravel → Recurso completo** faz três perguntas (nome do Model, campos e tipo do controller) e cria todos os arquivos de uma vez:
+
+![Fluxo do Recurso completo](docs/recurso-completo.svg)
+
+As imagens deste README são ilustrações do funcionamento, não capturas de tela.
 
 ### Campos
 
