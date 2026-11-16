@@ -32,7 +32,7 @@ Arquivos sem declaração (rotas, configurações) ficam com o ícone padrão do
 
 Três submenus, cada um com seus itens:
 
-![Menu do botão direito](https://raw.githubusercontent.com/cleversonNobrega/vscode-php-tipos/main/extensao/docs/menu.svg)
+![Menu do botão direito](https://raw.githubusercontent.com/cleversonNobrega/vscode-php-tipos/main/extensao/docs/menu.png)
 
 **Novo PHP**
 - Arquivo PHP, Classe, Interface, Trait e Enum.
