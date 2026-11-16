@@ -51,7 +51,7 @@ O item **Novo Laravel → Recurso completo** faz três perguntas (nome do Model,
 
 ![Controller gerado pelo Recurso completo](docs/resultado.png)
 
-> As capturas dos ícones e do Recurso completo são reais (VS Code com a extensão instalada, num projeto de exemplo). A imagem do menu do botão direito é uma ilustração.
+> As capturas dos ícones e do Recurso completo são reais (VS Code com a extensão instalada, num projeto de exemplo). As imagens do menu do botão direito e das mensagens de erro são ilustrações.
 
 ### Campos
 
@@ -64,6 +64,14 @@ name:string, email:string:unique, valor:decimal:nullable, ativo:boolean, company
 - **Tipos:** `string`, `text`, `integer`, `bigInteger`, `boolean`, `decimal`, `float`, `date`, `dateTime`, `json`, `foreignId`.
 - **Modificadores:** `nullable` e `unique`.
 - **O que gera:** colunas da migration, `$fillable` e `casts()`, regras de validação (com `Rule::unique()->ignore(...)` na edição e `exists:` nas chaves estrangeiras) e as colunas e inputs das telas.
+
+### Mensagens de erro em português
+
+Além da extensão, a pasta `configuracao/` traz regras para o **Error Lens** (extensão separada) mostrar em português o texto vermelho ao lado da linha:
+
+![Mensagens de erro em português](docs/erros-pt.svg)
+
+As regras ficam em `errorLens.replace` no `configuracao/settings.json` e cobrem método, classe, variável, propriedade, função e constante não definidos, tipo esperado, número de argumentos e erro de sintaxe. Só muda o texto na linha: o painel Problemas e o texto ao passar o mouse continuam em inglês.
 
 ## Instalação
 
