@@ -1,16 +1,59 @@
 {
-  "name": "php-tipos-icones",
-  "displayName": "PHP Tipos (Material + anel C/I/T/E)",
-  "description": "Material Icon Theme com ícone em anel para classe, interface, trait e enum do PHP.",
-  "version": "0.2.1",
-  "publisher": "local",
+  "name": "php-tipos",
+  "displayName": "PHP Tipos",
+  "description": "Ícones em anel para classe, interface, trait e enum, e criação rápida de arquivos PHP, Laravel (CRUD completo) e Blade pelo botão direito.",
+  "version": "1.0.0",
+  "publisher": "cleversonnobrega",
+  "license": "MIT",
+  "icon": "icon.png",
+  "categories": [
+    "Themes",
+    "Snippets",
+    "Other"
+  ],
+  "keywords": [
+    "php",
+    "laravel",
+    "blade",
+    "icons",
+    "icon theme",
+    "scaffold",
+    "crud",
+    "migration",
+    "model",
+    "controller",
+    "eloquent",
+    "namespace",
+    "psr-4",
+    "class",
+    "interface",
+    "trait",
+    "enum",
+    "pt-br"
+  ],
+  "galleryBanner": {
+    "color": "#1e1e2e",
+    "theme": "dark"
+  },
+  "homepage": "https://github.com/cleversonNobrega/vscode-php-tipos#readme",
+  "bugs": {
+    "url": "https://github.com/cleversonNobrega/vscode-php-tipos/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cleversonNobrega/vscode-php-tipos.git",
+    "directory": "extensao"
+  },
   "engines": {
     "vscode": "^1.80.0"
   },
-  "main": "./extension.js",
+  "extensionDependencies": [
+    "pkief.material-icon-theme"
+  ],
   "activationEvents": [
     "onStartupFinished"
   ],
+  "main": "./extension.js",
   "contributes": {
     "iconThemes": [
       {
@@ -23,27 +66,27 @@
     "commands": [
       {
         "command": "phpTipos.novo.arquivo",
-        "title": "PHP: Arquivo PHP"
+        "title": "Arquivo PHP"
       },
       {
         "command": "phpTipos.novo.controller",
-        "title": "PHP: Controller"
+        "title": "Controller (vazio)"
       },
       {
         "command": "phpTipos.novo.class",
-        "title": "PHP: Classe"
+        "title": "Classe"
       },
       {
         "command": "phpTipos.novo.interface",
-        "title": "PHP: Interface"
+        "title": "Interface"
       },
       {
         "command": "phpTipos.novo.trait",
-        "title": "PHP: Trait"
+        "title": "Trait"
       },
       {
         "command": "phpTipos.novo.enum",
-        "title": "PHP: Enum"
+        "title": "Enum"
       },
       {
         "command": "phpTipos.novo.controllerResource",
@@ -116,17 +159,17 @@
       "explorer/context": [
         {
           "submenu": "phpTipos.submenu",
-          "when": "explorerResourceIsFolder",
+          "when": "explorerResourceIsFolder && config.phpTipos.mostrarPhp",
           "group": "2_workspace@0"
         },
         {
           "submenu": "phpTipos.laravel",
-          "when": "explorerResourceIsFolder",
+          "when": "explorerResourceIsFolder && config.phpTipos.mostrarLaravel",
           "group": "2_workspace@1"
         },
         {
           "submenu": "phpTipos.blade",
-          "when": "explorerResourceIsFolder && (config.phpTipos.mostrarTudo || resourcePath =~ /views/)",
+          "when": "explorerResourceIsFolder && config.phpTipos.mostrarBlade && (config.phpTipos.mostrarTudo || resourcePath =~ /views/)",
           "group": "2_workspace@2"
         }
       ],
@@ -134,11 +177,6 @@
         {
           "command": "phpTipos.novo.arquivo",
           "group": "1@0"
-        },
-        {
-          "command": "phpTipos.novo.controller",
-          "group": "1@1",
-          "when": "config.phpTipos.mostrarTudo || resourcePath =~ /Controllers/"
         },
         {
           "command": "phpTipos.novo.class",
@@ -237,28 +275,33 @@
           "group": "1@0"
         },
         {
-          "command": "phpTipos.novo.controllerResource",
+          "command": "phpTipos.novo.controller",
           "group": "2@0",
           "when": "config.phpTipos.mostrarTudo || resourcePath =~ /Controllers/"
         },
         {
-          "command": "phpTipos.novo.model",
+          "command": "phpTipos.novo.controllerResource",
           "group": "2@1",
+          "when": "config.phpTipos.mostrarTudo || resourcePath =~ /Controllers/"
+        },
+        {
+          "command": "phpTipos.novo.model",
+          "group": "2@2",
           "when": "config.phpTipos.mostrarTudo || resourcePath =~ /Models/"
         },
         {
           "command": "phpTipos.novo.migration",
-          "group": "2@2",
+          "group": "2@3",
           "when": "config.phpTipos.mostrarTudo || resourcePath =~ /migrations/"
         },
         {
           "command": "phpTipos.novo.request",
-          "group": "2@3",
+          "group": "2@4",
           "when": "config.phpTipos.mostrarTudo || resourcePath =~ /Requests/"
         },
         {
           "command": "phpTipos.novo.service",
-          "group": "2@4",
+          "group": "2@5",
           "when": "config.phpTipos.mostrarTudo || resourcePath =~ /Services/"
         }
       ],
@@ -303,6 +346,21 @@
     "configuration": {
       "title": "PHP Tipos",
       "properties": {
+        "phpTipos.mostrarPhp": {
+          "type": "boolean",
+          "default": true,
+          "description": "Mostra o submenu \"Novo PHP\" (Arquivo PHP, Classe, Interface, Trait, Enum) no botão direito das pastas."
+        },
+        "phpTipos.mostrarLaravel": {
+          "type": "boolean",
+          "default": true,
+          "description": "Mostra o submenu \"Novo Laravel\" (Recurso completo, Model, Migration, Request, Service, Controller) no botão direito das pastas."
+        },
+        "phpTipos.mostrarBlade": {
+          "type": "boolean",
+          "default": true,
+          "description": "Mostra o submenu \"Novo Blade\" (layout, listagem, formulário, detalhe, componente, view) no botão direito das pastas."
+        },
         "phpTipos.mostrarTudo": {
           "type": "boolean",
           "default": false,

@@ -1,0 +1,5 @@
+testes/**
+docs/**
+cache.json
+*.vsix
+.vscodeignore

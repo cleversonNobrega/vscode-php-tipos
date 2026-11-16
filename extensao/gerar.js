@@ -67,5 +67,8 @@ function gerar(raizes) {
 module.exports = { gerar };
 if (require.main === module) {
   const r = process.argv.slice(2).map(p => path.resolve(p));
-  console.log(gerar(r) ? 'tema atualizado' : 'sem mudanças', Object.keys(JSON.parse(fs.readFileSync(path.join(AQUI,'cache.json')))).length, 'arquivos PHP com tipo');
+  const mudou = gerar(r);
+  let total = 0;
+  try { total = Object.keys(JSON.parse(fs.readFileSync(path.join(AQUI, 'cache.json'), 'utf8'))).length; } catch {}
+  console.log(mudou ? 'tema atualizado' : 'sem mudanças', total, 'arquivos PHP com tipo');
 }

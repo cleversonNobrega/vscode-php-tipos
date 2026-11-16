@@ -1,125 +1,69 @@
 # PHP Tipos
 
-Extensão do VS Code para quem trabalha com PHP e Laravel. Funciona em qualquer projeto: dá ícones diferentes para classe, interface, trait e enum, e cria arquivos pelo botão direito do explorador, já com namespace e código base.
+Extensão do VS Code para quem trabalha com PHP e Laravel: **ícones em anel** para classe, interface, trait e enum, e **criação de arquivos** PHP, Laravel (CRUD completo) e Blade pelo botão direito do explorador.
 
-Este repositório guarda a extensão (`extensao/`), a configuração do editor usada com ela (`configuracao/`) e o script que gera o instalador (`scripts/`).
+![Ícones por tipo no explorador](extensao/docs/icones.png)
 
-## O que ela faz
+A descrição completa, com funcionalidades, passo a passo, configurações e imagens, está em **[extensao/README.md](extensao/README.md)** (é o mesmo texto da página no Marketplace).
 
-### Ícones por tipo
-
-O tema **"Material + PHP Tipos (anel)"** usa o Material Icon Theme e acrescenta um ícone em anel conforme o que o arquivo `.php` declara:
-
-| Ícone | Tipo |
-|---|---|
-| **C** (azul) | classe |
-| **I** (verde) | interface |
-| **T** (laranja) | trait |
-| **E** (roxo) | enum |
-
-Arquivos sem declaração (rotas, configurações) ficam com o ícone padrão do PHP. O tema é refeito sozinho quando você cria, apaga ou salva arquivos `.php`.
-
-![Ícones por tipo no explorador](docs/icones.png)
-
-### Criar arquivos pelo botão direito
-
-Clique com o botão direito em uma **pasta** do explorador:
-
-- **Novo PHP:** Arquivo PHP, Controller, Classe, Interface, Trait e Enum. O namespace sai do `composer.json` mais próximo (PSR-4).
-- **Novo Laravel:**
-  - **Recurso completo:** cria Model, Migration, Request, Controller e Views de uma vez e copia a linha de rota.
-  - Controller resource (CRUD), Model, Migration, Request e Service avulsos.
-- **Novo Blade:** layout base, listagem, formulário (criar e editar), detalhe, componente e view em branco ou com `@extends`.
-
-![Menu do botão direito](docs/menu.svg)
-
-Cada item só aparece na pasta que combina (Controller em `Controllers`, Model em `Models`, Migration em `migrations`, Request em `Requests`, Service em `Services`, Blade em `views`). Para ver tudo em qualquer pasta, ligue `phpTipos.mostrarTudo`.
-
-### Recurso completo
-
-O item **Novo Laravel → Recurso completo** faz três perguntas (nome do Model, campos e tipo do controller) e cria todos os arquivos de uma vez (Model, Migration, Request, Controller e, no modo Web, as views `index`, `_form`, `create`, `edit` e `show`).
-
-**1. Os campos** (o nome do Model vem na pergunta anterior):
-
-![Pergunta dos campos](docs/campos.png)
-
-**2. O tipo do controller:**
-
-![Pergunta do tipo do controller](docs/tipo.png)
-
-**3. O controller gerado** (namespace, `use` e regras vêm do `composer.json` do projeto; a linha `Route::resource(...)` é copiada para a área de transferência):
-
-![Controller gerado pelo Recurso completo](docs/resultado.png)
-
-> As capturas dos ícones e do Recurso completo são reais (VS Code com a extensão instalada, num projeto de exemplo). As imagens do menu do botão direito e das mensagens de erro são ilustrações.
-
-### Campos
-
-Model, Migration, Request, Controller resource e as telas Blade perguntam os campos (opcional):
-
-```
-name:string, email:string:unique, valor:decimal:nullable, ativo:boolean, company_id:foreignId
-```
-
-- **Tipos:** `string`, `text`, `integer`, `bigInteger`, `boolean`, `decimal`, `float`, `date`, `dateTime`, `json`, `foreignId`.
-- **Modificadores:** `nullable` e `unique`.
-- **O que gera:** colunas da migration, `$fillable` e `casts()`, regras de validação (com `Rule::unique()->ignore(...)` na edição e `exists:` nas chaves estrangeiras) e as colunas e inputs das telas.
-
-### Mensagens de erro em português
-
-Além da extensão, a pasta `configuracao/` traz regras para o **Error Lens** (extensão separada) mostrar em português o texto vermelho ao lado da linha:
-
-![Mensagens de erro em português](docs/erros-pt.svg)
-
-As regras ficam em `errorLens.replace` no `configuracao/settings.json` e cobrem método, classe, variável, propriedade, função e constante não definidos, tipo esperado, número de argumentos e erro de sintaxe. Só muda o texto na linha: o painel Problemas e o texto ao passar o mouse continuam em inglês.
-
-## Instalação
-
-Veja a pasta de instaladores ou gere o seu:
-
-```bash
-python scripts/empacotar.py
-code --install-extension dist/php-tipos-icones-0.2.1.vsix --force
-```
-
-Depois escolha o tema em **Ctrl+Shift+P → Preferências: Tema de Ícones de Arquivo → Material + PHP Tipos (anel)** e recarregue a janela. O Material Icon Theme é instalado junto, como dependência.
-
-## Configurações
-
-| Configuração | Padrão | Para que serve |
-|---|---|---|
-| `phpTipos.plural` | `pt-BR` | Regra de plural de tabela, rota e variável. `pt-BR`: contato → contatos, item → itens, ação → ações. `en`: lead → leads, category → categories. |
-| `phpTipos.pluraisPersonalizados` | `{}` | Exceções por Model. Ex.: `{ "Pessoa": "pessoas" }`. |
-| `phpTipos.strictTypes` | `true` | Gera `declare(strict_types=1);` nos arquivos novos. |
-| `phpTipos.layoutPadrao` | `layouts.app` | Layout usado nas telas quando o projeto não tem `resources/views/layouts`. Se tiver, usa o que existe (`app`, ou o primeiro arquivo). |
-| `phpTipos.mostrarTudo` | `false` | Mostra todos os itens de menu em qualquer pasta. |
-| `phpTipos.atualizarIconesSozinho` | `true` | Troca o tema por um instante para o VS Code reler os ícones sem recarregar a janela. |
-
-## Estrutura do repositório
+## O que há neste repositório
 
 | Pasta | Conteúdo |
 |---|---|
-| `extensao/` | Código da extensão |
-| `configuracao/` | `settings.json`, lista de extensões (`extensoes.txt`) e `instalar.ps1` |
-| `scripts/empacotar.py` | Gera o `.vsix` sem baixar nada da internet |
+| `extensao/` | A extensão: código, `package.json`, README, CHANGELOG, ícone e imagens |
+| `configuracao/` | `settings.json`, lista de extensões (`extensoes.txt`) e `instalar.ps1` para montar outro computador |
+| `scripts/empacotar.py` | Gera o instalador `.vsix` sem baixar nada da internet |
 
-### Mapa do código
+### Mapa do código (`extensao/`)
 
 - `gera.js`: textos gerados (Model, Migration, Request, Controller, Blade). Não depende do VS Code, então é testável.
-- `laravel.js` e `blade.js`: comandos e perguntas.
-- `novo.js`: Arquivo PHP, Controller, Classe, Interface, Trait, Enum e leitura de namespace.
-- `gerar.js`: monta o tema de ícones.
+- `laravel.js` e `blade.js`: comandos e perguntas de Laravel e Blade.
+- `novo.js`: Arquivo PHP, Classe, Interface, Trait, Enum e leitura de namespace (PSR-4).
+- `gerar.js`: monta o tema de ícones lendo o Material Icon Theme.
 - `extension.js`: ativação, observação de arquivos e configurações.
 
 ## Manutenção
 
-Testes (simulam o VS Code num projeto temporário e conferem os arquivos com `php -l`; precisa de PHP no PATH):
+**Testes** (simulam o VS Code num projeto temporário e conferem os arquivos com `php -l`; precisam de Node e PHP no PATH):
+
+```bash
+node extensao/testes/unidade.js
+```
 
 ```bash
 node extensao/testes/teste.js
 ```
 
-Ao mudar o código, suba `version` em `extensao/package.json` antes de empacotar.
+**Gerar o instalador local** (`dist/php-tipos-<versão>.vsix`; precisa de Node, Python e do Material Icon Theme instalado):
+
+```bash
+python scripts/empacotar.py
+```
+
+**Instalar o instalador local:**
+
+```bash
+code --install-extension dist/php-tipos-1.0.0.vsix --force
+```
+
+Ao mudar o código, suba `version` em `extensao/package.json` e registre a mudança em `extensao/CHANGELOG.md`.
+
+### Publicar no Marketplace
+
+Exige uma conta, um *publisher* e um token (PAT) com permissão **Marketplace → Manage**. O token é seu: digite-o só no terminal, quando o `vsce` pedir, e nunca o salve no repositório.
+
+Os links de imagem do README são relativos (`docs/...`); para o Marketplace eles precisam virar links `https`, e o repositório precisa ser **público**:
+
+```bash
+cd extensao
+npx @vscode/vsce package --baseImagesUrl https://raw.githubusercontent.com/cleversonNobrega/vscode-php-tipos/main/extensao/
+```
+
+```bash
+npx @vscode/vsce publish --baseImagesUrl https://raw.githubusercontent.com/cleversonNobrega/vscode-php-tipos/main/extensao/
+```
+
+Antes, gere o `tema.json` (o `vsce` não o cria): `node extensao/gerar.js`.
 
 ## Outro computador
 
@@ -127,9 +71,14 @@ Ao mudar o código, suba `version` em `extensao/package.json` antes de empacotar
 2. Rode `configuracao/instalar.ps1`, que instala as extensões e o `.vsix` e copia o `settings.json` (com backup do atual).
 3. Para formatar PHP ao salvar: `composer global require laravel/pint`.
 
-## Limites
+## Mensagens de erro em português
 
-- O ícone é escolhido pelo **nome** do arquivo: dois arquivos com o mesmo nome e tipos diferentes dividem o mesmo ícone.
-- As telas Blade usam HTML simples, sem Bootstrap nem Tailwind.
-- O plural em português segue regras simples e não coloca acentos (papel → papeis). Use `phpTipos.pluraisPersonalizados` nas exceções.
-- O código gerado é um ponto de partida: não inclui autorização nem filtros próprios do seu projeto.
+As regras para o **Error Lens** mostrar o texto vermelho em português estão em `errorLens.replace` no `configuracao/settings.json`. Elas não fazem parte da extensão.
+
+![Mensagens de erro em português](extensao/docs/erros-pt.svg)
+
+*Ilustração do texto vermelho ao lado da linha; só muda esse texto, o painel Problemas continua em inglês.*
+
+## Licença
+
+[MIT](extensao/LICENSE)

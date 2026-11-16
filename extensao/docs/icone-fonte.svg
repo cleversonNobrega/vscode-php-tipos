@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <rect width="128" height="128" fill="#1e1e2e"/>
+  <g font-family="Segoe UI, Arial, sans-serif" font-weight="700" font-size="26" text-anchor="middle">
+    <circle cx="40" cy="40" r="21" fill="#7fd8ff" fill-opacity="0.18" stroke="#7fd8ff" stroke-width="4"/>
+    <text x="40" y="49" fill="#7fd8ff">C</text>
+    <circle cx="88" cy="40" r="21" fill="#3fe07f" fill-opacity="0.18" stroke="#3fe07f" stroke-width="4"/>
+    <text x="88" y="49" fill="#3fe07f">I</text>
+    <circle cx="40" cy="88" r="21" fill="#ffa75c" fill-opacity="0.18" stroke="#ffa75c" stroke-width="4"/>
+    <text x="40" y="97" fill="#ffa75c">T</text>
+    <circle cx="88" cy="88" r="21" fill="#c792ea" fill-opacity="0.18" stroke="#c792ea" stroke-width="4"/>
+    <text x="88" y="97" fill="#c792ea">E</text>
+  </g>
+</svg>
