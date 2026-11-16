@@ -2,7 +2,7 @@
   "name": "php-tipos",
   "displayName": "PHP Tipos",
   "description": "Ícones em anel para classe, interface, trait e enum, e criação rápida de arquivos PHP, Laravel (CRUD completo) e Blade pelo botão direito.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "cleversonnobrega",
   "license": "MIT",
   "icon": "icon.png",
@@ -363,8 +363,8 @@
         },
         "phpTipos.mostrarTudo": {
           "type": "boolean",
-          "default": false,
-          "description": "Mostra todos os itens de Novo PHP/Laravel/Blade em qualquer pasta (por padrão cada item só aparece na pasta que combina: Controllers, Models, migrations, Requests, Services, views)."
+          "default": true,
+          "description": "Mostra todos os itens de Novo PHP, Novo Laravel e Novo Blade em qualquer pasta. Desligue para cada item aparecer só na pasta que combina (Controllers, Models, migrations, Requests, Services, views)."
         },
         "phpTipos.atualizarIconesSozinho": {
           "type": "boolean",

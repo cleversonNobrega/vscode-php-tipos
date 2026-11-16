@@ -47,7 +47,7 @@ Três submenus, cada um com seus itens:
 - Layout base, listagem (`index` com tabela), formulário (criar e editar), detalhe (`show`), componente (`x-nome`), view com `@extends` e view em branco.
 - Usa o layout que o projeto já tem em `resources/views/layouts`.
 
-Cada item só aparece na pasta que combina (Controller em `Controllers`, Model em `Models`, Migration em `migrations`, Request em `Requests`, Service em `Services`, Blade em `views`).
+Por padrão todos os itens aparecem em qualquer pasta. Se preferir que cada item só apareça na pasta que combina (Controller em `Controllers`, Model em `Models`, Migration em `migrations`, Request em `Requests`, Service em `Services`, Blade em `views`), desligue `phpTipos.mostrarTudo`.
 
 ### Campos
 
@@ -100,7 +100,7 @@ A extensão **nunca sobrescreve**: se algum dos arquivos já existir, ela avisa 
 | `phpTipos.mostrarPhp` | `true` | Mostra o submenu **Novo PHP** |
 | `phpTipos.mostrarLaravel` | `true` | Mostra o submenu **Novo Laravel** |
 | `phpTipos.mostrarBlade` | `true` | Mostra o submenu **Novo Blade** |
-| `phpTipos.mostrarTudo` | `false` | Mostra todos os itens em qualquer pasta, sem filtrar pelo nome da pasta |
+| `phpTipos.mostrarTudo` | `true` | Mostra todos os itens em qualquer pasta. Desligue para filtrar pelo nome da pasta |
 | `phpTipos.plural` | `pt-BR` | Plural de tabela, rota e variável: `pt-BR` (contato → contatos, item → itens, ação → ações) ou `en` |
 | `phpTipos.pluraisPersonalizados` | `{}` | Exceções por Model, por exemplo `{ "Pessoa": "pessoas" }` |
 | `phpTipos.strictTypes` | `true` | Gera `declare(strict_types=1);` nos arquivos novos |
