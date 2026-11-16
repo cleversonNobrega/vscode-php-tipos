@@ -2,7 +2,7 @@
   "name": "php-tipos",
   "displayName": "PHP Tipos",
   "description": "Ícones em anel para classe, interface, trait e enum, e criação rápida de arquivos PHP, Laravel (CRUD completo) e Blade pelo botão direito.",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "publisher": "cleversonnobrega",
   "license": "MIT",
   "icon": "icon.png",
@@ -346,6 +346,11 @@
     "configuration": {
       "title": "PHP Tipos",
       "properties": {
+        "phpTipos.perguntarCampos": {
+          "type": "boolean",
+          "default": false,
+          "description": "Pergunta os campos (nome:tipo:nullable:unique) ao criar Model, Migration, Request, Controller resource, Recurso completo e telas Blade, e gera colunas, regras e inputs a partir deles. Desligado, cria só a estrutura base, como o Novo PHP."
+        },
         "phpTipos.mostrarPhp": {
           "type": "boolean",
           "default": true,

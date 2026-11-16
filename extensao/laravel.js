@@ -59,7 +59,9 @@ async function pedeNome(prompt, placeHolder, regex, msg, value) {
   return v ? v.trim() : null;
 }
 // devolve array (vazio se em branco) ou null se cancelou
+// Por padrão não pergunta: cria só a estrutura base (como o "Novo PHP"). Para perguntar os campos, ligue phpTipos.perguntarCampos.
 async function pedeCampos() {
+  if (!vscode.workspace.getConfiguration('phpTipos').get('perguntarCampos', false)) return [];
   const v = await vscode.window.showInputBox({
     prompt: 'Campos (opcional) — nome:tipo[:nullable][:unique], separados por vírgula',
     placeHolder: 'Ex.: name:string, email:string:unique, valor:decimal:nullable, ativo:boolean, company_id:foreignId',

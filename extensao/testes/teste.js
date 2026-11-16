@@ -1,9 +1,9 @@
 // Teste dos geradores com um VS Code simulado. Uso: node testes/teste.js
 const Module = require('module'), fs = require('fs'), path = require('path'), os = require('os'), cp = require('child_process');
-const resp = [], cmds = {}; let clip = '';
+const resp = [], cmds = {}; let clip = ''; let flagCampos = true;
 const fake = {
   window: { showInputBox: async () => resp.shift(), showQuickPick: async () => resp.shift(), showTextDocument: async () => {}, showErrorMessage: m => console.log('ERRO:', m), showInformationMessage: () => {} },
-  workspace: { workspaceFolders: [], openTextDocument: async () => ({}), getConfiguration: () => ({ get: () => null }) },
+  workspace: { workspaceFolders: [], openTextDocument: async () => ({}), getConfiguration: () => ({ get: (k, d) => (k === 'perguntarCampos' ? flagCampos : d) }) },
   commands: { registerCommand: (n, f) => { cmds[n] = f; return {}; } }, env: { clipboard: { writeText: async t => { clip = t; } } },
 };
 const o = Module._load; Module._load = function (r, ...a) { return r === 'vscode' ? fake : o.call(this, r, ...a); };
@@ -21,6 +21,17 @@ const campos = 'name:string, email:string:unique, valor:decimal:nullable, ativo:
   await run('novo.controllerResource', 'app/Http/Controllers', 'Avulso', 'Avulso', 'name:string:unique');
   await run('novo.migration', 'database/migrations', 'add_status_to_leads_table');
   await run('blade.formulario', 'resources/views', 'Lead', campos);
+  // padrão: só a estrutura base, sem perguntar campos
+  flagCampos = false;
+  await run('novo.recursoCompleto', 'app', 'Pedido', { label: 'Web', api: false });
+  await run('novo.model', 'app/Models', 'Produto');
+  await run('novo.migration', 'database/migrations', 'create_marcas_table');
+  const lido = f => fs.readFileSync(path.join(raiz, f), 'utf8');
+  const base = lido('app/Models/Pedido.php');
+  if (!/\$fillable = \[\n        \/\/\n    \];/.test(base)) { console.log('ERRO: Model base deveria ter // no $fillable'); process.exitCode = 1; }
+  if (resp.length) { console.log('ERRO: sobraram respostas na fila (perguntou campos sem querer):', resp); process.exitCode = 1; }
+  const mig = fs.readdirSync(path.join(raiz, 'database/migrations')).find(n => n.endsWith('create_marcas_table.php'));
+  if (!mig || !/\$table->id\(\);\n            \/\/\n            \$table->timestamps\(\);/.test(lido('database/migrations/' + mig))) { console.log('ERRO: migration base deveria ter // no lugar das colunas'); process.exitCode = 1; }
   const lista = []; (function v(d) { for (const i of fs.readdirSync(d, { withFileTypes: true })) i.isDirectory() ? v(path.join(d, i.name)) : lista.push(path.join(d, i.name)); })(raiz);
   let ok = true;
   for (const f of lista.filter(f => f.endsWith('.php') && !f.endsWith('.blade.php'))) {

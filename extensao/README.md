@@ -2,7 +2,7 @@
 
 **Ícones em anel para classe, interface, trait e enum — e criação rápida de arquivos PHP, Laravel e Blade pelo botão direito do explorador.**
 
-Clique com o botão direito em uma pasta, escolha o que quer criar e informe o nome. A extensão cria o arquivo no lugar certo, com namespace, `use` e código base. No Laravel, informe os campos (`name:string, email:string:unique`) e ela monta Model, Migration, Request, Controller e telas de uma vez.
+Clique com o botão direito em uma pasta, escolha o que quer criar e informe o nome. A extensão cria o arquivo no lugar certo, com namespace, `use` e código base. No Laravel, ela cria Model, Migration, Request, Controller e telas já com a estrutura base. Se quiser, ative `phpTipos.perguntarCampos` para informar os campos (`name:string, email:string:unique`) e gerar também colunas, regras e inputs.
 
 ![Ícones por tipo no explorador](https://raw.githubusercontent.com/cleversonNobrega/vscode-php-tipos/main/extensao/docs/icones.png)
 
@@ -10,7 +10,7 @@ Clique com o botão direito em uma pasta, escolha o que quer criar e informe o n
 
 - **Todo arquivo `.php` tem o mesmo ícone.** Você não distingue uma classe de uma interface, de um trait ou de um enum sem abrir o arquivo.
 - **Criar arquivo PHP é repetitivo.** Namespace, `declare(strict_types=1)`, `use`, chaves e nome da classe: a extensão escreve tudo isso.
-- **Um CRUD no Laravel são muitos arquivos.** Model, Migration, Request, Controller e cinco telas, todos com os mesmos nomes e campos. Aqui é uma pergunta de nome e uma de campos.
+- **Um CRUD no Laravel são muitos arquivos.** Model, Migration, Request, Controller e cinco telas, todos com os mesmos nomes e campos. Aqui é uma pergunta de nome (e, se você quiser, uma de campos).
 - **Views Blade começam sempre iguais.** Layout, listagem, formulário e detalhe saem prontos, já com `@csrf`, `old()`, `@error` e paginação.
 
 ## Funcionalidades
@@ -49,9 +49,11 @@ Três submenus, cada um com seus itens:
 
 Por padrão todos os itens aparecem em qualquer pasta. Se preferir que cada item só apareça na pasta que combina (Controller em `Controllers`, Model em `Models`, Migration em `migrations`, Request em `Requests`, Service em `Services`, Blade em `views`), desligue `phpTipos.mostrarTudo`.
 
-### Campos
+### Campos (opcional)
 
-Model, Migration, Request, Controller resource e as telas Blade perguntam os campos (opcional):
+Por padrão, os itens do Laravel e do Blade criam só a **estrutura base**, como o Novo PHP: um `//` marca onde ficariam as colunas, as regras de validação e os campos das telas.
+
+Se você ligar `phpTipos.perguntarCampos`, Model, Migration, Request, Controller resource, Recurso completo e as telas Blade passam a perguntar os campos e a gerar o código a partir deles:
 
 ```
 name:string, email:string:unique, valor:decimal:nullable, ativo:boolean, company_id:foreignId
@@ -73,7 +75,7 @@ name:string, email:string:unique, valor:decimal:nullable, ativo:boolean, company
 
 1. Clique com o botão direito em qualquer pasta do projeto e escolha **Novo Laravel → Recurso completo**.
 2. Digite o nome do Model no singular (`Lead`).
-3. Digite os campos, ou deixe em branco.
+3. Só se `phpTipos.perguntarCampos` estiver ligada: digite os campos, ou deixe em branco.
 
 ![Pergunta dos campos](https://raw.githubusercontent.com/cleversonNobrega/vscode-php-tipos/main/extensao/docs/campos.png)
 
@@ -91,7 +93,7 @@ A extensão **nunca sobrescreve**: se algum dos arquivos já existir, ela avisa 
 
 1. Clique com o botão direito em uma pasta dentro de `resources/views`.
 2. Escolha **Novo Blade** e o modelo (listagem, formulário, detalhe...).
-3. Informe o nome do Model e, se quiser, os campos.
+3. Informe o nome do Model (e os campos, se `phpTipos.perguntarCampos` estiver ligada).
 
 ## Configurações
 
@@ -101,6 +103,7 @@ A extensão **nunca sobrescreve**: se algum dos arquivos já existir, ela avisa 
 | `phpTipos.mostrarLaravel` | `true` | Mostra o submenu **Novo Laravel** |
 | `phpTipos.mostrarBlade` | `true` | Mostra o submenu **Novo Blade** |
 | `phpTipos.mostrarTudo` | `true` | Mostra todos os itens em qualquer pasta. Desligue para filtrar pelo nome da pasta |
+| `phpTipos.perguntarCampos` | `false` | Pergunta os campos (`nome:tipo:nullable:unique`) e gera colunas, regras e inputs. Desligado, cria só a estrutura base |
 | `phpTipos.plural` | `pt-BR` | Plural de tabela, rota e variável: `pt-BR` (contato → contatos, item → itens, ação → ações) ou `en` |
 | `phpTipos.pluraisPersonalizados` | `{}` | Exceções por Model, por exemplo `{ "Pessoa": "pessoas" }` |
 | `phpTipos.strictTypes` | `true` | Gera `declare(strict_types=1);` nos arquivos novos |

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.0
+
+- **Laravel e Blade criam só a estrutura base**, como o Novo PHP: não perguntam mais os campos. Onde ficariam colunas, regras e campos, o arquivo traz um `//`.
+- Nova configuração `phpTipos.perguntarCampos` (padrão `false`): ligada, volta a perguntar os campos e a gerar migration, `$fillable`, regras e telas a partir deles.
+
 ## 1.0.1
 
 - Os submenus **Novo PHP**, **Novo Laravel** e **Novo Blade** agora mostram todos os itens em qualquer pasta. Antes, cada item só aparecia na pasta que combinava (por exemplo, o Blade só dentro de `views`). Para voltar ao comportamento antigo, desligue `phpTipos.mostrarTudo`.
